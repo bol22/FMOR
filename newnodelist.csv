@@ -1,0 +1,52 @@
+265(26),(173)105,3,ABC,trunk line,105,3 line
+105(106),(194)107,1,B,branch,107,1 line end
+105(104),(105)104,3,ABC,trunk line,104,3 line 
+104(108),(258)196,1,B,branch,196,1 line
+104(110),(195)21,1,C,branch,21,1 line end
+104(111),(104)111,3,ABC,trunk line,,
+111(109),(257)197,1,B,branch,197,1 line end
+111(166),(111)166,3,ABC,trunk line,,
+166(143),(202)119,2,AC,branch,166,
+119(201),(199)80,1,A,branch,119,
+166(165),(166)165,3,ABC,trunk line,,
+165(142),(204)79,1,C,branch,,
+165(149),(165)149,3,ABC,trunk line,,
+149(141),(208)78,1,B,branch,,
+149(148),(9)112,1,B,branch,,
+149(164),(149)164,3,ABC,trunk line,,
+164(140),(214)120,1,A,branch  ,,
+164(145),(164)145,3,ABC,trunk line,,
+145(144),(198)113,1,A,branch  ,,
+145(163),(145)163,3,ABC,trunk line,,
+163(147),(240)114,1,B,branch,,
+163(139),(212)10,2,BC,branch,,
+163(160),(163)160,3,ABC,trunk line,,
+160(161),(161)138,1,C,branch,,
+138(220),(217)11,1,C,branch,,
+138(241),(242)115,1,C,branch,,
+160(130),(160)130,3,ABC,trunk line,,
+130(137),(223)122,2,AB,branch,,
+122(222),(221)58,1,A,branch,,
+130(162),(116)129,1,C,branch, problem,
+130(131),(131)136,3,C,trunk line,,
+136(135),(224)123,1,A,branch,,
+136(132),(132)133,3,ABC,trunk line,,
+133(134),(230)124,1,C,branch,,
+133(156),(133)156,3,ABC,trunk line,156,
+156(169),(245)146,1,B,branch,,
+156(39),(39)261,3,ABC,trunk line,,p
+261(44),(44)36,3,ABC,trunk line,, phase problem
+36(127),(127)81,3,ABC,branch,,fork problem
+36(35),(41)46,3,ABC,trunk line,,
+46(47),(46)47,3,ABC,branch,,
+47(180),(178)154,1,C,branch,,
+46(45),(46)45,3,ABC,trunk line,,
+45(29),(181)28,3,ABC,branch,,
+45(48),(92)263,3,ABC,trunk line,,lots of short lines
+263(61),(69)68,3,ABC,trunk line,,
+68(70),(72)172,3,ABC,branch,,has a  single phase branch
+68(63),(59)74,3,ABC,trunk line,,
+74(171),(50)182,3,ABC,branch,,
+74(73),(76)75,3,ABC,trunk line,75   fork,
+75(189),(187)12,3,ABC,branch,,
+75(77),(4)3,3,ABC,trunk line,,

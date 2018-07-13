@@ -1,0 +1,16 @@
+
+
+node265-node26,node165-node149,3
+node149-node141,node9-node112,1,B
+node149-node164,node145-node163,3
+node163-node160,node163-node160,3
+node160-node161,node242-node115,1,C
+node160-node130,node132-node133,3
+node133-node134,node230-node124,1,C
+node133-node156,node39-node261,3
+node261-node44,node92-node263,3
+node263-node61,node52-node262,3
+
+
+
+
