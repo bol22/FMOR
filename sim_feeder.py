@@ -54,18 +54,9 @@ def getV(model_name, nodelistfile, V_datafile, new_Vdatafile):
     for k in range(len(nodeinfolist)):
         nodelist.append(dict(zip(segmentkeys,nodeinfolist[k])))    
     # read the voltage according to segment node
-    global Via
-    global Vib
-    global Vic
-    global Vfa
-    global Vfb
-    global Vfc
-    Via=[]
-    Vib=[] 
-    Vic=[]
-    Vfa=[]
-    Vfb=[] 
-    Vfc=[]
+    global Via, Vib, Vic, Vfa, Vfb, Vfc
+    Via=[]; Vib=[]; Vic=[]; Vfa=[]; Vfb=[]; Vfc=[]
+    
     for n in range(len(nodelist)):
     #    temp_node='R5-12-47-1_'+nodelist[n]['i_node']
         Via.append(complex(float(Va[model_name+'_node_'+nodelist[n]['i_node']]),float(Vaimg[model_name+'_node_'+nodelist[n]['i_node']])))
@@ -118,6 +109,7 @@ def getV_sim(model_name, nodelistfile, V_datafile, new_Vdatafile):
     # read the voltage according to segment node
     global Vias, Vibs, Vics, Vfas, Vfbs, Vfcs
     Vias=[]; Vibs=[]; Vics=[]; Vfas=[]; Vfbs=[];  Vfcs=[]
+    
     for n in range(len(nodelist)):
     #    temp_node='R5-12-47-1_'+nodelist[n]['i_node']
         Vias.append(complex(float(Va[model_name+'_node_'+nodelist[n]['i_node']]),float(Vaimg[model_name+'_node_'+nodelist[n]['i_node']])))
@@ -170,18 +162,9 @@ def getI(model_name, linelistfile, I_datafile,new_Idatafile):
     for k in range(len(lineinfolist)):
         linelist.append(dict(zip(segmentkeys,lineinfolist[k])))
     
-    global Iia
-    global Iib
-    global Iic
-    global Ifa
-    global Ifb
-    global Ifc
-    Iia=[]
-    Iib=[] 
-    Iic=[]
-    Ifa=[]
-    Ifb=[] 
-    Ifc=[]
+    global Iia, Iib, Iic, Ifa, Ifb, Ifc
+    Iia=[]; Iib=[]; Iic=[]; Ifa=[]; Ifb=[]; Ifc=[]
+    
     for n in range(len(linelist)):
         Iia.append(complex(float(Ia[linelist[n]['i_branch']]),float(Iaimg[linelist[n]['i_branch']])))
         Iib.append(complex(float(Ib[linelist[n]['i_branch']]),float(Ibimg[linelist[n]['i_branch']])))
@@ -232,18 +215,9 @@ def getI_agg(model_name, junctionlistfile, I_datafile):
     for k in range(len(junctioninfolist)):
         junctionlist.append(dict(zip(junctionkeys,junctioninfolist[k])))
 
-    global IiaJ
-    global IibJ
-    global IicJ
-    global IoaJ
-    global IobJ
-    global IocJ
-    IiaJ=[]
-    IibJ=[] 
-    IicJ=[]
-    IoaJ=[]
-    IobJ=[] 
-    IocJ=[]
+    global IiaJ, IibJ, IicJ, IoaJ, IobJ, IocJ
+    IiaJ=[]; IibJ=[]; IicJ=[]; IoaJ=[]; IobJ=[]; IocJ=[]
+    
     for n in range(len(junctionlist)):
         if junctionlist[n]['out_branch_1']=='' and junctionlist[n]['out_branch_2']=='' and junctionlist[n]['out_branch_3']=='':
             IiaJ.append(complex(float(Ia[junctionlist[n]['in_branch']]),float(Iaimg[junctionlist[n]['in_branch']])))
@@ -278,23 +252,9 @@ def getI_agg(model_name, junctionlistfile, I_datafile):
 # calculate impedance and load for simplified model
 
 def calculate_Z_S():
-    global Z
-    global S 
-    global S_agg
-    global dV
-    global dV2
-    global dI 
-    global dI2
-    global Ii
-    global Ii2
-    global Zv
-    global Zv2
-    global S2
-    global dIJ
-    
+    global Z, S, S_agg, dV, dV2, dI, dI2, Ii, Ii2, Zv, Zv2, S2, dIJ   
     #initiallize the arrays
     # no way to store matrix with different dimensions in a single variable
-
     dV=np.empty((53,3,1),dtype=complex)
     dV2=np.empty((53,2,1),dtype=complex)      #variables for two phase segment need to be defined seperatly
     dI=np.empty((53,3,1),dtype=complex)
@@ -308,8 +268,7 @@ def calculate_Z_S():
     S2=np.empty((53,2,1),dtype=complex)
     dIJ=np.empty((53,3,1),dtype=complex)
     S_agg=np.empty((53,3,1),dtype=complex)
-    
-    
+        
     for n in range(len(Via)):
         
         if junctionlist[n]['junction']=='junction':
@@ -374,8 +333,7 @@ def calculate_Z_S():
                 S[n]=np.array([[0],[0],[0]])
             else:
                 S[n]=np.array([[0],[S2[n][0][0]],[S2[n][1][0]]])
-        
-        
+                
         elif nodelist[n]['phase_name']=='A':
             
             dV[n]=np.array([[Via[n]-Vfa[n]],[0],[0]])
@@ -408,7 +366,7 @@ def calculate_Z_S():
                 S[n]=np.array([[0],[0],[0]])
             else:
                 S[n]=np.array([[0],[0],[np.multiply(Vfc[n],dI[n][2].conjugate())]])
-
+                
 #***********************************************************************************************************               
 # write new gld model 
 def CreateNode(seg_number,glmfile):
@@ -774,11 +732,7 @@ def errorplot(baseV):
             errorc.append(abs((abs(Vfc[n])-abs(Vfcs[n])))/baseV*100)
         else:            
             n=n+1
-#    plt.plot(errora)
-#    plt.plot(errorb)
-#    plt.scatter(errorc)
-#    plt.ylabel('Voltage Error [p.u.]')
-#    plt.show()
+
     indexa = np.arange(len(errora))
     indexb = np.arange(len(errorb))
     indexc = np.arange(len(errorc))
@@ -797,9 +751,6 @@ def errorplot(baseV):
     plt.ylabel('V Error [p.u.]')
     plt.show()
     return
-
-        
-
 
 #******************************************
 #create voltdump objects
